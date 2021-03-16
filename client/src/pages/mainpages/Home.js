@@ -5,8 +5,8 @@ import '../../App.css';
 import AdSlider from '../../components/AdSlider';
 import Top5 from '../../components/Top5';
 
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+// import SignIn from './SignIn';
+// import SignUp from './SignUp';
 
 class Home extends React.Component {
     state = {
