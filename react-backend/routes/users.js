@@ -18,10 +18,7 @@ asyncRouter.post("/checkgoogleexist", async (req, res, next) => {
     body: { uid },
   } = req;
   if (uid === undefined) return next(`NO UID ERROR`);
-  return res.status(201).send({ result: "success"});
-});
-
-  /*DB.user
+  return DB.users
   .doc(uid)
   .get()
   .then(async (docSnapshot) => {
@@ -33,21 +30,20 @@ asyncRouter.post("/checkgoogleexist", async (req, res, next) => {
     }
   })
   .catch((err) => next(err.message));
-});*/
+});
 
 // 회원가입
 asyncRouter.post("./signup", async(req,res,next)=>{
   const {body} =req;
 
   if(
-    body.method == undefined ||
-    body.name == undefined ||
-    body.email == undefined ||
-    body.nickName == undefined ||
-    body.address1 == undefined ||
-    body.address2 == undefined ||
-    body.phoneNumber == undefined ||
-    body.accountNumber == undefined
+    body.method === undefined ||
+    body.name === undefined ||
+    body.email === undefined ||
+    body.nickName === undefined ||
+    body.address === undefined ||
+    body.phoneNumber === undefined ||
+    body.accountNumber === undefined
   ){
     return next(ERRORS.DATA.INVALID_DATA);
   }
@@ -61,7 +57,7 @@ if(body.method === "GOOGLE") {
     return next(ERRORS_AUTH.NO_UID);
   }
 
-  return DB.user
+  return DB.users
   .doc(body.uid)
   .get()
   .then(async (docSnapshot) => {
@@ -70,12 +66,11 @@ if(body.method === "GOOGLE") {
     }
     else {
         try {
-          await DB.user.doc(body.uid).set({
+          await DB.users.doc(body.uid).set({
             email : body.email.trim(),
             name : body.name,
             nickName : body.nickName,
-            address1 : body.address1,
-            address2 : body.address2,
+            address : body.address1,
             phoneNumber : body.phoneNumber,
             accountNumber : body.accountNumber
           });
@@ -89,7 +84,7 @@ if(body.method === "GOOGLE") {
   .catch((_err) => next(ERRORS.DATA.INVALID_DATA));
 } 
 else{
-  return next(err);
+  return next(err.message);
 }
 });
 
