@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Block-Auction
+4학년 1학기 전공종합설계 프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+*****
 
-## Available Scripts
+## git 이용법
+### <완전 처음>
+****
+=> fork => git clone => git remote add
 
-In the project directory, you can run:
+- 타겟 프로젝트의 저장소를 자신의 저장소로 Fork한다.
 
-### `npm start`
+- fork로 생성한 본인 계정의 저장소에서 clone or download 버튼을 누르고 표시되는 url을 복사한다 ( 브라우저 url을 그냥 복사하면 안됨!!)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    ```
+    git clone https://github.com/dojyj/Block-Auction(복사한 주소)
+    ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 로컬 저장소에 자신의 원격 저장소 추가 && 프로젝트 원격 저장소 추가 
+    
+    ```
+    git remote add origin(자기 repo 별명) https://github.com/dojyj/Block-Auction(복사한 주소)
+    git remote add upstream(프로젝트 repo 별명) https://github.com/dojyj/Block-Auction.git
+    ```
 
-### `npm test`
+#### <그 이후 반복 >
+****
+=> branch 생성 => add,commit,push => pull request 생성 => merge PR => 동기화 및 branch 삭제 => branch 생성..
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ***코드 짜기 전에!! branch 생성 및 동기화
+    ```
+    git checkout -b dy(자기 branch 별명)
+    git fetch upstream(원본 저장소)
+    git merge upstream/main(원본 저장소 main 브랜치)
+    // 바뀐 내용이 있다면
+    git push
+    ```
+    
+- dependency 다운로드 (package.json에 새로운 모듈 추가됬을 경우)
+  
+    ```
+    npm install
+    ```
 
-### `npm run build`
+- 수정 작업후 add,commit,push
+ 
+    ```
+    git push origin(자기 repo 별명) dy(자기 branch 별명)
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 자기 repo 들어가서 pull request 생성. push 완료하고 자기 계정의 github 저장소에 들어가면 Compare & pull request 버튼이 활성화 되어있음. 버튼 누르고 메세지 작성후 PR 생성!!
+  
+- merge PR. 원본 저장소 관리자가 확인하고 merge
+  
+- Merge이후 branch 삭제
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```
+    git checkout main (자기 remote repository 별명)
+    git branch -d dy (자기 branch 별명)
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 코드 수정하기 전 branch 생성까지 필수!! 
