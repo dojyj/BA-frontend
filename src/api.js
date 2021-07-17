@@ -1,8 +1,11 @@
 import axios from "axios";
 import { firestore } from "./firebase.utils";
 
+const localURL = "http://localhost:3333";
+// const serverURL = "http://54.180.79.0:3000";
+
 const api = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: localURL,
 });
 
 export const userApi = {
@@ -51,8 +54,6 @@ export const userApi = {
      (13) endDate : startDate 이후여야 함. 경매 진행시간은 10분 ~ 120분으로 제한하고 10분단위로 선택 가능하게
      (14) uploadDate :  
      (15) sellingFailure : init 0으로 post
-    
-
 */
 
 const formDataConfig = {
