@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import test from "../../lib/test.png";
-import bugs from "../../lib/bugs.png";
-import ear from "../../lib/ear.png";
-import kit from "../../lib/kit.png";
+import art from "../../lib/art.png";
 const Positioner = styled.div`
   height: 500px;
   width: 800px;
@@ -57,19 +54,14 @@ const Date = styled.div`
   width: 300px;
   display: inline;
 `;
-/*const Row = styled.div``;
-const Img = styled.div``;
-const Content = styled.div``;
-const Price = styled.div``;
-const Buttons = styled.div``;
-const Date = styled.div``;*/
+
 const List = (props) => {
   return (
     <Positioner>
       <div>찜한 경매 목록 </div>
       <Row>
-        <img src={test} alt="" />
-        {/* <Content>
+        <img src={art} alt="" />
+        <Content>
           <h2>{props.title}</h2>
           <p>{props.info}</p>
           <span>시작일 : {props.startDate}</span>
@@ -84,16 +76,7 @@ const List = (props) => {
           <p>경매상태 아이콘 자리 </p>
           <button>수정</button>
           <button>삭제</button>
-        </Buttons> */}
-      </Row>
-      <Row>
-        <img src={kit} alt="" />
-      </Row>
-      <Row>
-        <img src={test} alt="" />
-      </Row>
-      <Row>
-        <img src={kit} alt="" />
+        </Buttons>
       </Row>
     </Positioner>
   );

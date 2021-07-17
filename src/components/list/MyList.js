@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import test from "../../lib/test.png";
-import bugs from "../../lib/bugs.png";
-import ear from "../../lib/ear.png";
-import kit from "../../lib/kit.png";
+import art from "../../lib/art.png";
 
 const Positioner = styled.div`
   height: 500px;
@@ -11,18 +8,19 @@ const Positioner = styled.div`
   position: absolute;
   top: 25%;
   left: 35%;
+  border: 1px solid blue;
 `;
 
 const Row = styled.div`
   height: 100px;
-  width: 300px;
+  width: 800px;
   margin-bottom: 5px;
   display: flex;
 `;
 
 const Img = styled.div`
   height: 150px;
-  width: 180px;
+  width: 200px;
   border: 1px solid black;
   img {
     height: 140px;
@@ -32,23 +30,22 @@ const Img = styled.div`
 
 const Content = styled.div`
   border: 1px solid black;
-  height: 150px;
-  width: 360px;
+  max-height: 150px;
+  width: 300px;
   display: inline;
-  background: red;
 `;
 
 const Price = styled.div`
   border: 1px solid black;
-  height: 150px;
-  width: 100px;
+  max-height: 150px;
+  max-width: 300px;
   display: inline;
 `;
 
 const Buttons = styled.div`
   border: 1px solid black;
-  height: 150px;
-  width: 150px;
+  max-height: 150px;
+  max-width: 300px;
   display: inline;
 `;
 
@@ -64,8 +61,8 @@ const MyList = (props) => {
     <Positioner>
       <div>내 경매 목록 </div>
       <Row>
-        <img src={kit} alt="" />
-        {/* <Content>
+        <img src={art} alt="" />
+        <Content>
           <h2>{props.title}</h2>
           <p>{props.info}</p>
           <span>시작일 : {props.startDate}</span>
@@ -80,19 +77,9 @@ const MyList = (props) => {
           <p>경매상태 아이콘 자리 </p>
           <button>수정</button>
           <button>삭제</button>
-        </Buttons> */}
-      </Row>
-      <Row>
-        <img src={test} alt="" />
-      </Row>
-      <Row>
-        <img src={kit} alt="" />
-      </Row>
-      <Row>
-        <img src={test} alt="" />
+        </Buttons>
       </Row>
     </Positioner>
   );
 };
-
 export default MyList;

@@ -8,7 +8,6 @@ import LoginButton from "./LoginButton";
 import LikedButton from "./LikedButton";
 import { loginFunctions } from "../auth/AuthWatchers";
 import InboxButton from "./inbox/InboxButton";
-
 const HeaderBlock = styled.div`
   position: fixed;
   width: 100%;
@@ -17,7 +16,6 @@ const HeaderBlock = styled.div`
 `;
 
 //Responsive 컴포넌트 속성에 스타일 추가해서 새로운 컴포넌트 생성
-
 const Wrapper = styled(Responsive)`
   height: 5rem;
   display: flex;

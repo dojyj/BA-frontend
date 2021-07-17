@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import like_phone from "../../lib/like_phone.png";
-import like_ear from "../../lib/like_ear.png";
-import like_pic from "../../lib/like_pic.png";
+import art from "../../lib/art.png";
 
 const Positioner = styled.div`
   position: absolute;
   top: 70%;
   left: 50%;
-  width: 35%;
+  width: 50%;
   height: 100%;
   transform: translate(-50%, -50%);
 `;
@@ -28,22 +26,13 @@ const Card = styled.div`
   margin-bottom: 10px;
 `;
 
-// const Img = styled.div`
-//   height: 160px;
-//   width: 200px;
-//   border: 1px solid black;
-//   img {
-//     height: 150px;
-//     width: 180px;
-//   }
-// `;
-
 const Img = styled.div`
-  height: 250px;
+  height: 160px;
   width: 200px;
+  border: 1px solid black;
   img {
-    height: 240px;
-    width: 200px;
+    height: 150px;
+    width: 180px;
   }
 `;
 
@@ -78,10 +67,24 @@ const CardList = () => {
     <Positioner>
       <div>찜한 경매 목록 </div>
       <ItemList>
-        {/* <Card>
+        <Card>
+          <Img>
+            <img src={art} alt="" />
+          </Img>
+          <Title>화제의 작품</Title>
+          <AuctionPrice>시작가: 10000원</AuctionPrice>
+          <StartDate>경매시작일:2021.3.27</StartDate>
+          <div className="btnbox">
+            <Button>
+              <button>임시버튼</button>
+              <button>좋아요</button>
+            </Button>
+          </div>
+        </Card>
+        <Card>
           <Img>
             {" "}
-            <img src={test} alt="" />
+            <img src={art} alt="" />
           </Img>
           <Title>화제의 작품</Title>
           <AuctionPrice>시작가: 10000원</AuctionPrice>
@@ -90,7 +93,7 @@ const CardList = () => {
         <Card>
           <Img>
             {" "}
-            <img src={phone} alt="" />
+            <img src={art} alt="" />
           </Img>
           <Title>화제의 작품</Title>
           <AuctionPrice>시작가: 10000원</AuctionPrice>
@@ -99,16 +102,7 @@ const CardList = () => {
         <Card>
           <Img>
             {" "}
-            <img src={test} alt="" />
-          </Img>
-          <Title>화제의 작품</Title>
-          <AuctionPrice>시작가: 10000원</AuctionPrice>
-          <StartDate>경매시작일:2021.3.27</StartDate>
-        </Card>
-        <Card>
-          <Img>
-            {" "}
-            <img src={test} alt="" />
+            <img src={art} alt="" />
           </Img>
           <Title>화제의 작품</Title>
           <AuctionPrice>시작가: 10000원</AuctionPrice>
@@ -121,48 +115,7 @@ const CardList = () => {
         <Card />
         <Card />
         <Card />
-        <Card /> */}
-        <Card>
-          <Img>
-            <img src={like_phone} alt="" />
-          </Img>
-        </Card>
-        <Card>
-          <Img>
-            <img src={like_ear} alt="" />
-          </Img>
-        </Card>
-        <Card>
-          <Img>
-            <img src={like_pic} alt="" />
-          </Img>
-        </Card>
-        <Card>
-          <Img>
-            <img src={like_pic} alt="" />
-          </Img>
-        </Card>
-
-        <Card>
-          <Img>
-            <img src={like_phone} alt="" />
-          </Img>
-        </Card>
-        <Card>
-          <Img>
-            <img src={like_ear} alt="" />
-          </Img>
-        </Card>
-        <Card>
-          <Img>
-            <img src={like_pic} alt="" />
-          </Img>
-        </Card>
-        <Card>
-          <Img>
-            <img src={like_pic} alt="" />
-          </Img>
-        </Card>
+        <Card />
       </ItemList>
     </Positioner>
   );

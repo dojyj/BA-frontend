@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col } from "reactstrap";
-import ring from "../lib/ring.png";
-import table from "../lib/table.png";
-import pic from "../lib/pic.png";
-import top1 from "../lib/top1.png";
-import phone from "../lib/phone.png";
+import weeker from "../lib/weeker.png";
 const Top5ListBlock = styled.div`
   position: relative;
   justify-content: center;
@@ -73,23 +69,24 @@ const Top5 = () => {
               <Row>
                 <Col xs="6" sm="5">
                   <div className="first">
-                    <img src={phone} height="298px" width="200px" alt="" />
+                    <img src={weeker} height="250px" width="200px" alt="" />
+                    <p>상품명: </p>
                   </div>
 
                   <div className="second">
-                    <img src={ring} height="298px" width="200px" alt="" />
+                    <img src={weeker} height="250px" width="200px" alt="" />
                   </div>
 
                   <div className="third">
-                    <img src={pic} height="298px" width="200px" alt="" />
+                    <img src={weeker} height="250px" width="200px" alt="" />
                   </div>
 
                   <div className="fourth">
-                    <img src={top1} height="298px" width="200px" alt="" />
+                    <img src={weeker} height="250px" width="200px" alt="" />
                   </div>
 
                   <div className="fifth">
-                    <img src={table} height="298px" width="200px" alt="" />
+                    <img src={weeker} height="250px" width="200px" alt="" />
                   </div>
                 </Col>
               </Row>

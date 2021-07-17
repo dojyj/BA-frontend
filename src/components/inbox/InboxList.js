@@ -13,7 +13,7 @@ const InboxBlock = styled.div`
   justify-content: center;
   position: absolute;
   top: 43%;
-  left: 55%;
+  left: 50%;
   height: 100%;
   width: 50%;
   transform: translate(-50%, -50%);

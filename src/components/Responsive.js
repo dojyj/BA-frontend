@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 //반응형 디자인, 창 크기에 따라 달라지는 사이즈들
 const ResponstiveBlock = styled.div`
   padding-left: 1rem;
@@ -17,6 +18,8 @@ const ResponstiveBlock = styled.div`
 `;
 
 const Responsive = ({ children, ...rest }) => {
+  const inDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1124 });
+  const isTabletOrMobile = useMediaQuery({ minDeviceWidth: 1824 });
   return <ResponstiveBlock {...rest}>{children}</ResponstiveBlock>;
 };
 
