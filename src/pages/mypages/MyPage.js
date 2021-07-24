@@ -39,21 +39,22 @@ const MyPage = () => {
   };
 
   useEffect(() => {
-    
     getInfo();
-  },[]);
+  }, []);
 
-  
-  async function getInfo(){
+  async function getInfo() {
     const userInfo = loginFunctions.getUserInfo();
-  if (!userInfo) return;
-      await userApi.getUserData({ uid: userInfo.uid })
-    .then((data) =>{
-      console.log(data)
-      setuserProfile(data);
-      console.log(userprofile);
-    })
-    .catch((err) => console.log(err));
+    if (!userInfo) return;
+    await userApi
+      .getUserData({ uid: userInfo.uid })
+      .then((res) => {
+        return res.data.user_info;
+      })
+      .then((data) => {
+        console.log(data);
+        setuserProfile(data);
+      })
+      .catch((err) => console.log(err));
   }
   const UserInfo = (userInfo) => {
     firestore
@@ -105,14 +106,26 @@ const MyPage = () => {
             <input name="email" value={userprofile.email} onChange={onChange} />
           </InputWithLabel>
           <InputWithLabel label="가상계좌주소" name="account">
-            <input name="account" value={userprofile.account} onChange={onChange} />
+            <input
+              name="account"
+              value={userprofile.account}
+              onChange={onChange}
+            />
           </InputWithLabel>
           <InputWithLabel label="별명" name="nickName">
-            <input name="nickName" value={userprofile.nickName} onChange={onChange} />
+            <input
+              name="nickName"
+              value={userprofile.nickName}
+              onChange={onChange}
+            />
           </InputWithLabel>
           <button>중복검사</button>
           <InputWithLabel label="연락처" name="phoneNumber">
-            <input name="phoneNumber" value={userprofile.phoneNumber} onChange={onChange} />
+            <input
+              name="phoneNumber"
+              value={userprofile.phoneNumber}
+              onChange={onChange}
+            />
           </InputWithLabel>
           <InputWithLabel label="주소" name="Address"></InputWithLabel>
           <AuthContent detail="상세정보" />

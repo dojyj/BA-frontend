@@ -12,7 +12,7 @@ export const loadWeb3 = () => {
   } else if (web3) {
     web3 = new Web3(web3.currentProvider);
   } else {
-    window.alert(`meatamask 필요!!`);
+    // window.alert(`meatamask 필요!!`);
   }
 
   return ethereum;

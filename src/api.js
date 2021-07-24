@@ -9,17 +9,9 @@ const api = axios.create({
 });
 
 export const userApi = {
-  signUp: (body) => api.post("/users/signup", body),
-  checkGoogleSignUped: (body) => api.post("/users/checkgoogleexist", body),
-  getUserData: async (body) => {
-    const { uid } = body;
-    return await firestore
-      .collection("users")
-      .doc(uid)
-      .get()
-      .then((doc) => doc.data());
-  },
-  getDibs: (body) => api.post("/auctions/getdibs"),
+  checkGoogleSignUped: async (body) => api.get("/users/google/" + body.uid),
+  signUp: (body) => api.post("/users", body),
+  getUserData: async (body) => api.get("/users/" + body.uid),
 };
 
 /*
