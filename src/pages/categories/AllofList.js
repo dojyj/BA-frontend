@@ -14,9 +14,9 @@ function AllofList() {
   }, []);
 
   async function getProduct(body) {
-    await auctionApi.getAuctionList(body).then(async (res) => {
-      console.log(res);
-      setProducts(res);
+    await auctionApi.getAuctionList().then(async (res) => {
+      console.log(res.data.auctionList);
+      setProducts(res.data.auctionList);
       let number = Point + 3;
       setPoint(number);
     });
