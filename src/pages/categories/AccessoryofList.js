@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react';
 import { auctionApi } from "../../api";
 import List from '../../components/list/List';
 
+const params = new URLSearchParams([['category', 'ACC']]);
+
 function AccessoryofList () {
   const [Products,setProducts]=useState([]);
   const [Point,setPoint]=useState(3);
@@ -17,11 +19,10 @@ function AccessoryofList () {
     
   },[])
 
-  async function getProduct(body){
-    
-    await auctionApi.getAuctionList(body).then(async (res) => {
+  async function getProduct(){
+    await auctionApi.getAuctionListFromCategory(params).then(async (res) => {
       console.log(res);
-      setProducts(res);
+      setProducts(res.data.auctionList);
       let number=Point+3;
       setPoint(number);
     });

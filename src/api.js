@@ -60,41 +60,6 @@ const formDataConfig = {
   header: { "content-type": "multipart/form-data" },
 };
 export const auctionApi = {
-  getAuctionList: async (body) => {
-    const { skip, cate } = body;
-
-    console.log(skip);
-    console.log(cate);
-    let lists = [];
-    let each;
-    let first;
-
-    if (cate === "ALL") {
-      first = await firestore
-        .collection("auctionInfo")
-        .orderBy("startDate")
-        .limit(skip);
-    } else {
-      first = await firestore
-        .collection("auctionInfo")
-        .where("category", "==", cate)
-        .orderBy("startDate")
-        .limit(skip);
-    }
-
-    let getDoc = await first.get().then((doc) => {
-      doc.forEach((item) => {
-        console.log(item.data());
-        each = item.data();
-        each["_id"] = item.id;
-        //console.log(each);
-        lists.push(each);
-      });
-      console.log(lists);
-    });
-
-    return lists;
-  },
   getAuctiondetail: async (body) => {
     const { auctionId } = body;
     console.log({ auctionId });
@@ -103,6 +68,7 @@ export const auctionApi = {
     
     return first.data();
   },
-  postAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
-  postImage: (body) => api.post("/auctions/postimage", body),
+  getAuctionList: () => api.get("/auctions/list"),
+  getAuctionListFromCategory: (params) => api.get("/auctions/list/category", {params}),
+  createAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
 };

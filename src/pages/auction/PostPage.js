@@ -95,7 +95,7 @@ function PostPage() {
     setLoading(true);
 
     auctionApi
-      .postAuction(auctionFormData)
+      .createAuction(auctionFormData)
       .then((res) => {
         console.log(res);
         history.push("/");
