@@ -103,6 +103,6 @@ export const auctionApi = {
 
     return first.data();
   },
-  postAuction: (body) => api.post("/auctions/upload", body, formDataConfig),
+  postAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
   postImage: (body) => api.post("/auctions/postimage", body),
 };
