@@ -100,7 +100,7 @@ export const auctionApi = {
     console.log({ auctionId });
 
     let first = await firestore.collection("auctionInfo").doc(auctionId).get();
-
+    
     return first.data();
   },
   postAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
