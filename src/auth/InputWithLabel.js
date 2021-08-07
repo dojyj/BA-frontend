@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Palette from "../lib/styles/Palette";
-
 const Wrapper = styled.div`
   & + & {
     margin-top: 1rem;
@@ -29,11 +27,7 @@ const Input = styled.div`
     line-height: 1rem;
     border: none;
     font-size: 1.2rem;
-    background: ${Palette.gray[2]};
     transition: background-color 9999s ease-out;
-  }
-  &:hover {
-    background: ${Palette.gray[2]};
   }
 `;
 

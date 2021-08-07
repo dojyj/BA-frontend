@@ -33,7 +33,6 @@ const MyPage = () => {
     phoneNumber: "",
     address: "",
   });
-  const { name, email, account, nickName, phoneNumber, address } = state;
   const onChange = (e) => {
     dispatch(e.target);
   };
