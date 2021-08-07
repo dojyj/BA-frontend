@@ -9,18 +9,6 @@ import { loginFunctions } from "../../auth/AuthWatchers";
 import moment from "moment";
 import Select from "react-select";
 import postAuction from "../../auction/postAuction.css";
-import styled from "styled-components";
-
-const Button = styled.div`
-  display: inline;
-  transition: 0.5s ease;
-  border: 1px solid black;
-  background: transparent;
-  color: pink;
-  width: 40px;
-  height: 30px;
-  margin-top: 2px;
-`;
 
 function PostPage() {
   const { register, errors, handleSubmit, control } = useForm({
@@ -205,7 +193,9 @@ function PostPage() {
           />
 
           <div className="btnBlock">
-            <button onClick={handleSubmit}>경매 등록 완료</button>
+            <button className="postButton" onClick={handleSubmit}>
+              경매 등록 완료
+            </button>
           </div>
         </form>
       </div>
