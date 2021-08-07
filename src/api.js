@@ -57,10 +57,23 @@ export const auctionApi = {
     console.log({ auctionId });
 
     let first = await firestore.collection("auctionInfo").doc(auctionId).get();
-    
+
     return first.data();
   },
   getAuctionList: () => api.get("/auctions/list"),
-  getAuctionListFromCategory: (params) => api.get("/auctions/list/category", {params}),
+  getAuctionListFromCategory: (params) =>
+    api.get("/auctions/list/category", { params }),
   createAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
+};
+
+export const inboxApi = {
+  getInboxdata: async (body) => {
+    const { sendId } = body;
+    console.log({ sendId });
+
+    let inboxdata = await firestore.collection("inbox");
+    return inboxdata.data();
+  },
+
+  messageContent: async (body) => api.post("/inbox/" + body),
 };
