@@ -18,9 +18,10 @@ const Contents = styled.div`
 `;
 
 const Img = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 290px;
+  height: 290px;
   float: left;
+  border: 1px solid red;
 `;
 
 const Infos = styled.div`
@@ -62,14 +63,6 @@ const Buttons = styled.div`
 const DetailWrapper = ({ auction_img, auction_infos, like_auction }) => {
   const [like, setLike] = useState(false);
 
-  useEffect(async () => {
-    const fetchData = async () => {
-      const res = await axios.get("http://localhost:3000/detail/art");
-      if (res.data.type === "liked") setLike(true);
-    };
-    fetchData();
-  }, []);
-
   const toggleLike = async (e) => {
     const res = await axios.post();
     setLike(!like);
@@ -82,25 +75,25 @@ const DetailWrapper = ({ auction_img, auction_infos, like_auction }) => {
         </Img>
         <Infos>
           {" "}
-          <div>• 카테고리 : 예술품</div>
-          <div>• 상품명 : 예술품</div>
+          <div>• 카테고리 : </div>
+          <div>• 상품명 : </div>
           <br></br>
-          <div>• 작품설명: 예술품</div>
+          <div>• 작품설명: </div>
           <br />
-          <span>• 경매시작일 : 2021-06-02 5시&nbsp; &nbsp;</span>
-          <span>• 경매종료일 : 2021-06-02 6시</span>
+          <span>• 경매시작일 : &nbsp; &nbsp;</span>
+          <span>• 경매종료일 : </span>
           <br />
           <br></br>
-          <span>• 경매시작가 : 5,000,000원 &nbsp;</span>
-          <span>• 경매종료가 : -</span>
+          <span>• 경매시작가 : &nbsp;</span>
+          <span>• 경매종료가 : </span>
           <br></br>
           <br></br>
-          <div>• 경매유찰횟수 : 0회</div>
+          <div>• 경매유찰횟수 : 회</div>
         </Infos>
       </Contents>
       <Views>
         <HeartButton like={like}></HeartButton>
-        <span>조회수 : 10회</span>
+        <span>조회수 : 회</span>
       </Views>
       <Buttons>
         <button>찜하기</button>
