@@ -59,9 +59,10 @@ export const auctionApi = {
     api.get("auctions/list/category", {
       params: { cnt: body.skip, category: body.category },
     }),
-  getAuctiondetail: async (body) => api.post("auctions/list/id", body),
+  getAuctiondetail: async (params) => api.get("auctions/list/" + params),
   postAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
   postImage: (body) => api.post("/auctions/postimage", body),
+  getImage: async (params) => api.get("/uploads/" + params, { responseType: "arraybuffer" }),
 };
 
 export const userauctioinfoApi = {

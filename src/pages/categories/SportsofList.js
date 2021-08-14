@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { auctionApi } from "../../api";
 import List from "../../components/list/List";
+import { AuctionListUtils } from "./ListUtils";
 
 const SportsofList = () => {
   const [Products, setProducts] = useState([]);
@@ -8,22 +9,17 @@ const SportsofList = () => {
   useEffect(() => {
     const body = {
       skip: Point,
-      cate: "SPO",
+      category: "SPO",
     };
     getProduct(body);
   }, []);
 
   async function getProduct(params) {
-    await auctionApi
-      .getAuctionListFromCategory(params)
-      .then((res) => {
-        return res.data.auctionList;
-      })
-      .then((data) => {
-        console.log(data);
-        setProducts(data);
-        setPoint(Point + 3);
-      });
+    AuctionListUtils.getProducts(params).then((data) => {
+      console.log(data);
+      setProducts(data);
+      setPoint(Point + 3);
+    });
   }
 
   const renderLists = Products.map((product, index) => {
