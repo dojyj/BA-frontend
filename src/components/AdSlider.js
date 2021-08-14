@@ -7,17 +7,18 @@ import main_info from "../lib/main_info.png";
 import team from "../lib/team.png";
 
 const OutLine = styled.div`
-  height: 300px;
-  width: 800px;
-  background: grey;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  height: fit-content;
+  width: fit-content;
+  background: lightgray;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -50px;
+  object-fit: cover;
 
   .Ads-pic {
     max-height: 300px;
@@ -26,14 +27,10 @@ const OutLine = styled.div`
     padding-right: 2rem;
     align-items: center;
     justify-content: center;
-    overflow: "hidden";
+    overflow: hidden;
   }
 `;
 
-const Spacer = styled.div`
-  padding-left: 350px;
-  padding-right: 350px;
-`;
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
@@ -55,37 +52,15 @@ export default class SimpleSlider extends Component {
       ),
     };
     return (
-      <>
-        <Spacer>
-          <OutLine>
-            <div className="Ads-pic">
-              <Slider {...settings}>
-                <div>
-                  <img
-                    src={main_info}
-                    alt="index1"
-                    height="300px"
-                    width="800px"
-                  />
-                </div>
-
-                <div>
-                  <img src={team} alt="index2" height="300px" width="800px" />
-                </div>
-
-                <div>
-                  <img
-                    src={main_info}
-                    alt="index2"
-                    height="300px"
-                    width="800px"
-                  />
-                </div>
-              </Slider>
-            </div>
-          </OutLine>
-        </Spacer>
-      </>
+      <OutLine>
+        <div className="Ads-pic">
+          <Slider {...settings}>
+            <img className="Ads-pic" src={main_info} alt="index1" />
+            <img className="Ads-pic" src={team} alt="index2" />
+            <img className="Ads-pic" src={main_info} alt="index2" />
+          </Slider>
+        </div>
+      </OutLine>
     );
   }
 }

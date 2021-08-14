@@ -30,10 +30,12 @@ import SenderInboxView from "./components/inbox/SenderInboxView";
 import JoinedPage from "./pages/mypages/JoinedPage";
 import MyAuctionList from "./pages/mypages/MyAuctionList";
 import DetailPage from "./pages/auction/DetailPage";
+import { useSelector } from "react-redux";
+import { selectUser } from "./store/reducers/auth";
 
 const App = ({ location }) => {
   const exclusionArray = ["/signup"];
-
+  const user = useSelector(selectUser);
   return (
     <>
       {exclusionArray.indexOf(location.pathname) < 0 && <Header />}
@@ -66,7 +68,7 @@ const App = ({ location }) => {
           <Route path="/thing" component={ThingofList} />
           <Route path="/postAuction" component={PostPage} />
           <Route path="/detail" component={DetailPage} />
-          <Route path="/auction/:auctionId" component={DetailPage}/>
+          <Route path="/auction/:auctionId" component={DetailPage} />
           <Route component={NotFound} />
         </Switch>
       </main>

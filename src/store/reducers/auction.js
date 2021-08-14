@@ -1,4 +1,4 @@
-const initState = {
+/*const initState = {
     auctions: [
         { id : '1', title : 'qcy t1', startPrice : '100'},
         { id : '2', title : 'qcy t3', startPrice : '1000'},
@@ -9,4 +9,4 @@ const auction = (state = initState, action) => {
     return state;
 };
 
-export default auction;
+export default auction;*/

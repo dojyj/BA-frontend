@@ -4,6 +4,7 @@ import List from '../../components/list/List';
 
 //const params = new URLSearchParams([['category', 'ACC']]);
 
+// List of Accessory
 function AccessoryofList () {
   const [Products,setProducts]=useState([]);
   const [Point,setPoint]=useState(3);

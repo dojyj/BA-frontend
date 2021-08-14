@@ -4,12 +4,7 @@ import { useHistory } from "react-router-dom";
 import { auth, firestore } from "../../firebase.utils";
 import { userApi } from "../../api";
 import { loginFunctions } from "../../auth/AuthWatchers";
-import {
-  MyPageWrapper,
-  InputWithLabel,
-  AuthContent,
-  AuthButton,
-} from "../../auth";
+import { MyPageWrapper, InputWithLabel, AuthContent } from "../../auth";
 
 function reducer(state, action) {
   return {
@@ -129,7 +124,9 @@ const MyPage = () => {
           <InputWithLabel label="주소" name="Address"></InputWithLabel>
           <AuthContent detail="상세정보" />
           <InputWithLabel label="상세정보를 기입해주세요"></InputWithLabel>
-          <AuthButton type="submit">수정완료</AuthButton>
+          <button className="authButton" type="submit">
+            수정완료
+          </button>
         </AuthContent>
       </MyPageWrapper>
     </div>
