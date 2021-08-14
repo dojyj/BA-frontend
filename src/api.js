@@ -9,9 +9,10 @@ const api = axios.create({
 });
 
 export const userApi = {
-  checkGoogleSignUped: async (body) => api.get("/users/google/" + body.uid),
   signUp: (body) => api.post("/users", body),
+  checkGoogleSignUped: (body) => api.get("/users/google/" + body.uid),
   getUserData: async (body) => api.get("/users/" + body.uid),
+  getDibs: (body) => api.post("/auctions/getdibs"),
 };
 
 /*
@@ -51,9 +52,22 @@ export const userApi = {
 const formDataConfig = {
   header: { "content-type": "multipart/form-data" },
 };
+
 export const auctionApi = {
-  getAuctionList: () => api.get("/auctions/list"),
-  getAuctiondetail: (params) => api.get("auctions/list/" + params),
-  getAuctionListFromCategory: (params) => api.get("/auctions/list/category", { params }),
-  createAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
+  getAuctionList: async (body) => api.get("auctions/list", { params: { cnt: body.skip } }),
+  getAuctionListFromCategory: async (body) =>
+    api.get("auctions/list/category", {
+      params: { cnt: body.skip, category: body.category },
+    }),
+  getAuctiondetail: async (body) => api.post("auctions/list/id", body),
+  postAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
+  postImage: (body) => api.post("/auctions/postimage", body),
+};
+
+export const userauctioinfoApi = {
+  checkWish: async (body) =>
+    api.get("/userauctioninfo/wish", {
+      params: { userId: body.userId, auctionId: body.acutionId },
+    }),
+  clickWish: async (body) => api.post("/userauctioninfo/wishbtn", body),
 };

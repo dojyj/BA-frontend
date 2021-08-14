@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { BsHeartFill } from "react-icons/bs";
 
-const LoginButton = ({ to, history, ...rest }) => {
+const LikedButton = ({ to, history, ...rest }) => {
   const onClick = (e) => {
     if (to) {
       history.push(to);
@@ -15,4 +15,4 @@ const LoginButton = ({ to, history, ...rest }) => {
 
   return <BsHeartFill size="24" {...rest} onClick={onClick} />;
 };
-export default withRouter(LoginButton);
+export default withRouter(LikedButton);
