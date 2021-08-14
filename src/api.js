@@ -1,11 +1,11 @@
 import axios from "axios";
 import { firestore } from "./firebase.utils";
 
-const localURL = "http://localhost:3333";
-// const serverURL = "http://54.180.79.0:3000";
+export const serverURL = "http://localhost:3333"; // local
+// const serverURL = "http://54.180.79.0:3000"; // server
 
 const api = axios.create({
-  baseURL: localURL,
+  baseURL: serverURL,
 });
 
 export const userApi = {
@@ -52,15 +52,8 @@ const formDataConfig = {
   header: { "content-type": "multipart/form-data" },
 };
 export const auctionApi = {
-  getAuctiondetail: async (body) => {
-    const { auctionId } = body;
-    console.log({ auctionId });
-
-    let first = await firestore.collection("auctionInfo").doc(auctionId).get();
-    
-    return first.data();
-  },
   getAuctionList: () => api.get("/auctions/list"),
-  getAuctionListFromCategory: (params) => api.get("/auctions/list/category", {params}),
+  getAuctiondetail: (params) => api.get("auctions/list/" + params),
+  getAuctionListFromCategory: (params) => api.get("/auctions/list/category", { params }),
   createAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
 };
