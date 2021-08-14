@@ -1,36 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { BsPlusCircleFill } from "react-icons/bs";
 import styled from "styled-components";
+import { loginFunctions } from "../auth/AuthWatchers";
+
 
 const Plus = styled.div`
   justify-content: space-around;
   display: flex;
+  position: sticky;
+
 `;
 
 const Spacer = styled.div`
   padding-top: 3rem;
   padding-left: 60rem;
   padding-bottom: 3rem;
-`;
+`
 
-const PlusButton = ({ to, history, ...rest }) => {
-  const onClick = (e) => {
-    if (to) {
-      history.push(to);
+const PlusButton = ({ location }) => {
+  const [isLogin, setIsLogin] = useState();
+  useEffect(() => {
+    if (location.pathname === "/") {
+      const userInfo = loginFunctions.getUserInfo();
+      if (!userInfo) {
+        setIsLogin(false);
+        return;
+      }
+      setIsLogin(true);
     }
-
-    if (rest.onClick) {
-      rest.onClick(e);
-    }
-  };
+  }, [location.pathname]);
 
   return (
     <Spacer>
       <Plus>
-        <Link to="/postAuction">
-          <BsPlusCircleFill size="50" {...rest} onClick={onClick} />
-        </Link>
+        {isLogin ? (
+          <Link to="/postAuction">
+            <BsPlusCircleFill size="50" />
+          </Link>
+        ) : (
+          <Link to="/login">
+            <BsPlusCircleFill size="50" />
+          </Link>
+        )}
       </Plus>
     </Spacer>
   );
