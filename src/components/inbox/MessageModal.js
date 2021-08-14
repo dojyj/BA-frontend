@@ -17,7 +17,7 @@ class MessageModal extends Component {
   render() {
     return (
       <>
-        <button onClick={this.openModal}>쪽지 보내기 모달</button>
+        <button onClick={this.openModal}>쪽지보내기</button>
         <SendMessage isOpen={this.state.isModalOpen} close={this.closeModal} />
       </>
     );

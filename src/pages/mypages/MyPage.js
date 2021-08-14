@@ -5,6 +5,8 @@ import { auth, firestore } from "../../firebase.utils";
 import { userApi } from "../../api";
 import { loginFunctions } from "../../auth/AuthWatchers";
 import { MyPageWrapper, InputWithLabel, AuthContent } from "../../auth";
+import { AiOutlineSolution } from "react-icons/ai";
+import { Button } from "@material-ui/core";
 
 function reducer(state, action) {
   return {
@@ -74,7 +76,10 @@ const MyPage = () => {
   return (
     <div>
       <MyPageMenu />
-      <button
+
+      <Button
+        className="mypageOption"
+        startIcon={<AiOutlineSolution />}
         onClick={() => {
           auth
             .signOut()
@@ -88,8 +93,8 @@ const MyPage = () => {
             });
         }}
       >
-        SIGN OUT
-      </button>
+        로그아웃
+      </Button>
 
       <MyPageWrapper>
         <AuthContent title="회원 기본 정보 기입">
