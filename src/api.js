@@ -11,15 +11,17 @@ const api = axios.create({
 export const userApi = {
   signUp: (body) => api.post("/users", body),
   checkGoogleSignUped: (body) =>
-    api.get("/users/google/id", { params: { id: body.email } }),
-  getUserData: async (body) => {
-    const { uid } = body;
-    return await firestore
-      .collection("users")
-      .doc(uid)
-      .get()
-      .then((doc) => doc.data());
-  },
+    api.get("/users/google/" + body.uid),
+  getUserData: async (body) => 
+    api.get("/users/" + body.uid),
+  // {
+  //   const { uid } = body;
+  //   return await firestore
+  //     .collection("users")
+  //     .doc(uid)
+  //     .get()
+  //     .then((doc) => doc.data());
+  // },
   getDibs: (body) => api.post("/auctions/getdibs"),
 };
 
