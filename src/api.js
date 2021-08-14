@@ -9,8 +9,9 @@ const api = axios.create({
 });
 
 export const userApi = {
-  signUp: (body) => api.post("/users/signup", body),
-  checkGoogleSignUped: (body) => api.post("/users/checkgoogleexist", body),
+  signUp: (body) => api.post("/users", body),
+  checkGoogleSignUped: (body) =>
+    api.get("/users/google/id", { params: { id: body.email } }),
   getUserData: async (body) => {
     const { uid } = body;
     return await firestore
@@ -60,15 +61,20 @@ const formDataConfig = {
   header: { "content-type": "multipart/form-data" },
 };
 export const auctionApi = {
-
-  getAuctionList: async (body) => api.get("auctions/list",{ params:{ cnt:body.skip }}),
-  getAuctionListFromCategory: async (body) => api.get("auctions/list/category",{ params:{ cnt:body.skip, category:body.category }}),
-  getAuctiondetail: async (body) => api.post("auctions/list/id",body),
+  getAuctionList: async (body) =>
+    api.get("auctions/list", { params: { cnt: body.skip } }),
+  getAuctionListFromCategory: async (body) =>
+    api.get("auctions/list/category", {
+      params: { cnt: body.skip, category: body.category },
+    }),
+  getAuctiondetail: async (body) => api.post("auctions/list/id", body),
   postAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
   postImage: (body) => api.post("/auctions/postimage", body),
 };
 export const userauctioinfoApi = {
-  checkWish : async(body) => api.get("/userauctioninfo/wish",{ params:{ userId : body.userId, auctionId :body.acutionId }}),
-  clickWish : async(body) => api.post("/userauctioninfo/wishbtn",body)
+  checkWish: async (body) =>
+    api.get("/userauctioninfo/wish", {
+      params: { userId: body.userId, auctionId: body.acutionId },
+    }),
+  clickWish: async (body) => api.post("/userauctioninfo/wishbtn", body),
 };
-
