@@ -10,11 +10,12 @@ function AllofList() {
     let body = {
       skip: Point,
     };
+    console.log(body);
     getProduct(body);
   }, []);
 
   async function getProduct(body) {
-    await auctionApi.getAuctionList().then(async (res) => {
+    await auctionApi.getAuctionList(body).then(async (res) => {
       console.log(res.data.auctionList);
       setProducts(res.data.auctionList);
       let number = Point + 3;
