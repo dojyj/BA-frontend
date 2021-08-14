@@ -5,6 +5,9 @@ import img_test from "../../lib/img_test.jpg";
 import heart from "../../lib/heart.png";
 import HeartButton from "../../components/HeartButton";
 import { Link } from "react-router-dom";
+import { auctionApi, serverURL } from "../../api";
+import { loginFunctions } from "../../auth/AuthWatchers";
+import { AuctionListUtils } from "../../pages/categories/ListUtils";
 
 const Positioner = styled.div`
   position: absolute;
@@ -60,35 +63,62 @@ const Buttons = styled.div`
   }
 `;
 
-const DetailWrapper = ({ auction_img, auction_infos, like_auction }) => {
+const DetailWrapper = ({ id }) => {
   const [like, setLike] = useState(false);
+  const [auctionId] = useState(id);
+  const [Auction, setAuction] = useState([]);
+  const [category, setCategory] = useState("");
+  const [imgSrc, setImgSrc] = useState("");
 
-  const toggleLike = async (e) => {
-    const res = await axios.post();
-    setLike(!like);
-  };
+  // const toggleLike = async (e) => {
+  //   const res = await axios.post();
+  //   setLike(!like);
+  // };
+
+  useEffect(() => {
+    const route_params = auctionId;
+    getdata(route_params);
+  }, []);
+
+  async function getdata(route_params) {
+    await auctionApi
+      .getAuctiondetail(route_params)
+      .then((res) => {
+        return res.data.auction;
+      })
+      .then((data) => {
+        console.log(data);
+        setAuction(data);
+        setCategory(data.category);
+        AuctionListUtils.getAuctionImage(data.productImageURL).then((base64) => {
+          setImgSrc("data:;base64," + base64);
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <Positioner>
       <Contents>
         <Img>
-          <img src={img_test} height="280px" alt=""></img>
+          <img src={imgSrc} height="280px" alt=""></img>
         </Img>
         <Infos>
           {" "}
-          <div>• 카테고리 : </div>
-          <div>• 상품명 : </div>
-          <br></br>
-          <div>• 작품설명: </div>
+          <div>• 상품명 : {Auction.title}</div>
           <br />
-          <span>• 경매시작일 : &nbsp; &nbsp;</span>
-          <span>• 경매종료일 : </span>
+          <div>• 카테고리 : {category.label}</div>
           <br />
-          <br></br>
-          <span>• 경매시작가 : &nbsp;</span>
-          <span>• 경매종료가 : </span>
-          <br></br>
-          <br></br>
-          <div>• 경매유찰횟수 : 회</div>
+          <div>• 작품설명: {Auction.content}</div>
+          <br />
+          <span>• 경매시작일 : {Auction.startDate} &nbsp;&nbsp; </span>
+          <span>• 경매종료일 : {Auction.endDate}</span>
+          <br />
+          <br />
+          <span>• 경매시작가 : {Auction.startPrice}</span>
+          <br />
+          <br />
+          <div>• 경매유찰횟수 : {Auction.sellingFailure}회</div>
         </Infos>
       </Contents>
       <Views>

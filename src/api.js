@@ -1,27 +1,17 @@
 import axios from "axios";
 import { firestore } from "./firebase.utils";
 
-const localURL = "http://localhost:3333";
-// const serverURL = "http://54.180.79.0:3000";
+export const serverURL = "http://localhost:3333"; // local
+// const serverURL = "http://54.180.79.0:3000"; // server
 
 const api = axios.create({
-  baseURL: localURL,
+  baseURL: serverURL,
 });
 
 export const userApi = {
   signUp: (body) => api.post("/users", body),
-  checkGoogleSignUped: (body) =>
-    api.get("/users/google/" + body.uid),
-  getUserData: async (body) => 
-    api.get("/users/" + body.uid),
-  // {
-  //   const { uid } = body;
-  //   return await firestore
-  //     .collection("users")
-  //     .doc(uid)
-  //     .get()
-  //     .then((doc) => doc.data());
-  // },
+  checkGoogleSignUped: (body) => api.get("/users/google/" + body.uid),
+  getUserData: async (body) => api.get("/users/" + body.uid),
   getDibs: (body) => api.post("/auctions/getdibs"),
 };
 
@@ -62,17 +52,19 @@ export const userApi = {
 const formDataConfig = {
   header: { "content-type": "multipart/form-data" },
 };
+
 export const auctionApi = {
-  getAuctionList: async (body) =>
-    api.get("auctions/list", { params: { cnt: body.skip } }),
+  getAuctionList: async (body) => api.get("auctions/list", { params: { cnt: body.skip } }),
   getAuctionListFromCategory: async (body) =>
     api.get("auctions/list/category", {
       params: { cnt: body.skip, category: body.category },
     }),
-  getAuctiondetail: async (body) => api.post("auctions/list/id", body),
+  getAuctiondetail: async (params) => api.get("auctions/list/" + params),
   postAuction: (body) => api.post("/auctions/detail", body, formDataConfig),
   postImage: (body) => api.post("/auctions/postimage", body),
+  getImage: async (params) => api.get("/uploads/" + params, { responseType: "arraybuffer" }),
 };
+
 export const userauctioinfoApi = {
   checkWish: async (body) =>
     api.get("/userauctioninfo/wish", {
