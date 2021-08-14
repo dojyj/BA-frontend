@@ -4,17 +4,19 @@ import { BsPlusCircleFill } from "react-icons/bs";
 import styled from "styled-components";
 import { loginFunctions } from "../auth/AuthWatchers";
 
+
 const Plus = styled.div`
   justify-content: space-around;
   display: flex;
   position: sticky;
+
 `;
 
 const Spacer = styled.div`
   padding-top: 3rem;
   padding-left: 60rem;
   padding-bottom: 3rem;
-`;
+`
 
 const PlusButton = ({ location }) => {
   const [isLogin, setIsLogin] = useState();
