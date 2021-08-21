@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import CommonTable from "../table/CommonTable";
 import CommonTableColumn from "../table/CommonTableColumn";
@@ -7,18 +6,9 @@ import CommonTableRow from "../table/CommonTableRow";
 import { senderdata } from "../../lib/api/Senderdata";
 import InboxMenu from "./InboxMenu";
 import MyPageMenu from "../MyPageMenu";
+import { BsInbox, BsInboxFill } from "react-icons/bs";
 
-const SenderInboxBlock = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 43%;
-  left: 55%;
-  height: 100%;
-  width: 50%;
-  transform: translate(-50%, -50%);
-`;
+import "./InboxList.css";
 
 const SenderInboxList = (props) => {
   const [dataList, setDataList] = useState([]);
@@ -29,8 +19,25 @@ const SenderInboxList = (props) => {
   return (
     <>
       <MyPageMenu />
-      <InboxMenu />
-      <SenderInboxBlock>
+      <div className="inboxBlock">
+        <div className="inboxMenu_section">
+          <Link to="inbox">
+            <InboxMenu
+              Icon={BsInboxFill}
+              title="받은 쪽지함"
+              color="red"
+              selected
+            />
+          </Link>
+          <Link to="/sentinbox">
+            <InboxMenu
+              Icon={BsInbox}
+              title="보낸 쪽지함"
+              color="blue"
+              selected
+            />
+          </Link>
+        </div>
         <CommonTable
           headersName={["번호", "받는사람", "내용", "날짜", "읽음확인"]}
         >
@@ -39,11 +46,9 @@ const SenderInboxList = (props) => {
                 return (
                   <CommonTableRow key={index}>
                     <CommonTableColumn>{item.num}</CommonTableColumn>
-                    <CommonTableColumn>{item.receiver}</CommonTableColumn>
+                    <CommonTableColumn>{item.sender}</CommonTableColumn>
                     <CommonTableColumn>
-                      <Link to={`/senderInboxview/${item.num}`}>
-                        {item.content}
-                      </Link>
+                      <Link to={`/inboxview/${item.num}`}>{item.content}</Link>
                     </CommonTableColumn>
                     <CommonTableColumn>{item.date}</CommonTableColumn>
                     <CommonTableColumn>{item.read}</CommonTableColumn>
@@ -52,7 +57,7 @@ const SenderInboxList = (props) => {
               })
             : ""}
         </CommonTable>
-      </SenderInboxBlock>
+      </div>
     </>
   );
 };

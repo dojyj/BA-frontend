@@ -1,0 +1,18 @@
+.inboxBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  transform: translate(5%, -80%);
+  flex-direction: column;
+}
+.inboxMenu_section {
+  position: sticky;
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid whitesmoke;
+  text-align: center;
+  justify-content: space-between;
+  width: fit-content;
+  margin: 0 auto;
+}

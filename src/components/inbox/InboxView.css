@@ -1,12 +1,8 @@
 .InboxViewBlock {
   width: 30%;
-  height: 100%;
-  padding: 5px;
-  margin: 7%;
-  position: absolute;
-  top: 60%;
-  left: 45%;
-  transform: translate(-50%, -50%);
+  height: fit-content;
+  position: sticky;
+  transform: translate(120%, -75%);
 }
 
 .backToinbox {
@@ -34,4 +30,7 @@
 .InboxViewRow > *:nth-child(2) {
   margin: 10px 0;
   width: 70%;
+}
+.InboxViewRow > p {
+  overflow-wrap: break-word;
 }

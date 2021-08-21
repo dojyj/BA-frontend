@@ -1,15 +1,12 @@
-import React from 'react';
-import InboxList from '../../components/inbox/InboxList';
-import InboxMenu from '../../components/inbox/InboxMenu';
+import React from "react";
+import InboxList from "../../components/inbox/InboxList";
 
-
-const InboxPage = props => {
-    return (
-        <>
-        <InboxMenu/>
-        <InboxList/>  
-        </>
-);
+const InboxPage = (props) => {
+  return (
+    <>
+      <InboxList />
+    </>
+  );
 };
 
 export default InboxPage;

@@ -52,7 +52,7 @@ const App = ({ location }) => {
             path="/senderInboxview/:num"
             component={SenderInboxView}
           />
-          <Route exact path="/senderInbox" component={SenderInboxList} />
+          <Route exact path="/sentinbox" component={SenderInboxList} />
           <Route exact path="/send" component={SendPage} />
           <Route exact path="/inbox" component={InboxPage} />
           <Route path="/mypage" component={MyPage} />
