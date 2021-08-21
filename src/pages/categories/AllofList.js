@@ -4,7 +4,7 @@ import List from "../../components/list/List";
 
 function AllofList() {
   const [Products, setProducts] = useState([]);
-  const [Point, setPoint] = useState(3);
+  const [Point, setPoint] = useState(1);
 
   useEffect(() => {
     let body = {
@@ -18,7 +18,7 @@ function AllofList() {
     await auctionApi.getAuctionList(body).then(async (res) => {
       console.log(res.data.auctionList);
       setProducts(res.data.auctionList);
-      let number = Point + 3;
+      let number = Point + 1; // '더보기' click
       setPoint(number);
     });
   }
