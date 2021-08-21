@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import CommonTable from "../table/CommonTable";
 import CommonTableColumn from "../table/CommonTableColumn";
 import CommonTableRow from "../table/CommonTableRow";
 import { inboxdata } from "../../lib/api/TestData";
 import MyPageMenu from "../MyPageMenu";
-
-const InboxBlock = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 43%;
-  left: 50%;
-  height: 100%;
-  width: 50%;
-  transform: translate(-50%, -50%);
-`;
+import InboxMenu from "./InboxMenu";
+import { BsInbox, BsInboxFill } from "react-icons/bs";
+import "./InboxList.css";
 const InboxList = (props) => {
   const [dataList, setDataList] = useState([]);
 
@@ -28,7 +18,25 @@ const InboxList = (props) => {
   return (
     <>
       <MyPageMenu />
-      <InboxBlock>
+      <div className="inboxBlock">
+        <div className="inboxMenu_section">
+          <Link to="inbox">
+            <InboxMenu
+              Icon={BsInboxFill}
+              title="받은 쪽지함"
+              color="red"
+              selected
+            />
+          </Link>
+          <Link to="/sentinbox">
+            <InboxMenu
+              Icon={BsInbox}
+              title="보낸 쪽지함"
+              color="blue"
+              selected
+            />
+          </Link>
+        </div>
         <CommonTable
           headersName={["번호", "받는사람", "내용", "날짜", "읽음확인"]}
         >
@@ -48,7 +56,7 @@ const InboxList = (props) => {
               })
             : ""}
         </CommonTable>
-      </InboxBlock>
+      </div>
     </>
   );
 };
