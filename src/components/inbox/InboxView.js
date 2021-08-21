@@ -37,7 +37,7 @@ const InboxView = ({ history, location, match }) => {
             </div>
             <div className="InboxViewRow">
               <label>내용</label>
-              <div>{data.content}</div>
+              <p>{data.content}</p>
             </div>
           </>
         ) : (

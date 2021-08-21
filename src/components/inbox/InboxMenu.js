@@ -1,18 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./InboxMenu.css";
 
-const InboxMenu = () => {
+function InboxMenu({ Icon, title, color, selected }) {
   return (
-    <div className="inboxMenu">
-      <Link to="/inbox">
-        <button className="receiverInbox">받은 쪽지함</button>
-      </Link>
-      <Link to="/senderInbox">
-        <button className="senderInbox">보낸 쪽지함</button>
-      </Link>
+    <div
+      className={`inboxMenu ${selected && "inbox__selected"}`}
+      style={{
+        borderBottom: `1px solid ${color}`,
+        color: `${selected && color}`,
+      }}
+    >
+      <h4>{title}</h4>
     </div>
   );
-};
+}
 
 export default InboxMenu;
