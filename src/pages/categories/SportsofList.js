@@ -5,7 +5,7 @@ import { AuctionListUtils } from "./ListUtils";
 
 const SportsofList = () => {
   const [Products, setProducts] = useState([]);
-  const [Point, setPoint] = useState(3);
+  const [Point, setPoint] = useState(1);
   useEffect(() => {
     const body = {
       skip: Point,
@@ -18,7 +18,7 @@ const SportsofList = () => {
     AuctionListUtils.getProducts(params).then((data) => {
       console.log(data);
       setProducts(data);
-      setPoint(Point + 3);
+      setPoint(Point + 1);
     });
   }
 

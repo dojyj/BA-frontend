@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import styled from "styled-components";
-import img_test from "../../lib/img_test.jpg";
-import heart from "../../lib/heart.png";
 import HeartButton from "../../components/HeartButton";
 import { Link } from "react-router-dom";
-import { auctionApi, serverURL } from "../../api";
+import { auctionApi } from "../../api";
 import { loginFunctions } from "../../auth/AuthWatchers";
 import { AuctionListUtils } from "../../pages/categories/ListUtils";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "@material-ui/core";
+import { openSendMessage } from "../../store/features/inboxSlice";
 
 const Positioner = styled.div`
   position: absolute;
@@ -60,6 +60,13 @@ const Buttons = styled.div`
     img {
       height: 15px;
     }
+    cursor: pointer;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  a {
+    width: 100px;
   }
 `;
 
@@ -69,7 +76,7 @@ const DetailWrapper = ({ id }) => {
   const [Auction, setAuction] = useState([]);
   const [category, setCategory] = useState("");
   const [imgSrc, setImgSrc] = useState("");
-
+  const dispatch = useDispatch();
   // const toggleLike = async (e) => {
   //   const res = await axios.post();
   //   setLike(!like);
@@ -127,10 +134,12 @@ const DetailWrapper = ({ id }) => {
       </Views>
       <Buttons>
         <button>찜하기</button>
-        <button>경매입장</button>
-        <Link to="/send">
-          <button>쪽지보내기</button>
-        </Link>
+        <StyledLink to={`/realtimeauction/${auctionId}`}>
+          <button>경매입장</button>
+        </StyledLink>
+        <StyledLink to="/send">
+          <Button onClick={() => dispatch(openSendMessage)}>쪽지보내기</Button>
+        </StyledLink>
       </Buttons>
     </Positioner>
   );

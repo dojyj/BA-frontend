@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Route,
-  Switch,
-  BrowserRouter as Router,
-  withRouter,
-} from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router, withRouter } from "react-router-dom";
 import NotFound from "./NotFound";
 import Header from "./components/Header";
 import Home from "./pages/mainpages/Home";
@@ -30,12 +25,15 @@ import SenderInboxView from "./components/inbox/SenderInboxView";
 import JoinedPage from "./pages/mypages/JoinedPage";
 import MyAuctionList from "./pages/mypages/MyAuctionList";
 import DetailPage from "./pages/auction/DetailPage";
+import RealTimeAuctionPage from "./pages/auction/RealTimeAuctionPage";
 import { useSelector } from "react-redux";
-import { selectUser } from "./store/reducers/auth";
+import { selectUser } from "./store/features/userSlice";
+import { selectSendMessageIsOpen } from "./store/features/inboxSlice";
 
 const App = ({ location }) => {
   const exclusionArray = ["/signup"];
   const user = useSelector(selectUser);
+  ///const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
   return (
     <>
       {exclusionArray.indexOf(location.pathname) < 0 && <Header />}
@@ -47,11 +45,7 @@ const App = ({ location }) => {
           <Route path="/myAuctionList" component={MyAuctionList} />
           <Route path="/joinedlist" component={JoinedPage} />
           <Route exact path="/inboxview/:num" component={InboxView} />
-          <Route
-            exact
-            path="/senderInboxview/:num"
-            component={SenderInboxView}
-          />
+          <Route exact path="/senderInboxview/:num" component={SenderInboxView} />
           <Route exact path="/sentinbox" component={SenderInboxList} />
           <Route exact path="/send" component={SendPage} />
           <Route exact path="/inbox" component={InboxPage} />
@@ -69,6 +63,7 @@ const App = ({ location }) => {
           <Route path="/postAuction" component={PostPage} />
           <Route path="/detail" component={DetailPage} />
           <Route path="/auction/:auctionId" component={DetailPage} />
+          <Route path="/realtimeauction/:auctionId" component={RealTimeAuctionPage} />
           <Route component={NotFound} />
         </Switch>
       </main>

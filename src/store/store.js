@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./reducers/auth";
-//import inboxReducer from "./redecers/inbox";
+import userReducer from "./features/userSlice";
+import inboxReducer from "./features/inboxSlice";
 export default configureStore({
   reducer: {
     auth: userReducer,
-    // inbox: inboxReducer,
+    inbox: inboxReducer,
   },
 });
