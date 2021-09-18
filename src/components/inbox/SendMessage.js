@@ -19,7 +19,7 @@ const SendMessage = ({ isOpen, close }) => {
   const [receiver, setReceiver] = useState("");
   const [content, setContent] = useState("");
   useEffect(() => {
-    console.log("렌더링 완료");
+    console.log("렌더‰링 완료");
     onFormSubmit();
   });
 
@@ -38,6 +38,8 @@ const SendMessage = ({ isOpen, close }) => {
   const onFormSubmit = async (data) => {
     const formData = new FormData();
     const userId = await loginFunctions.getUserInfo().uid;
+  
+    
     formData.append("sender", sender);
     formData.append("receiver", receiver);
     formData.append("content", content);
