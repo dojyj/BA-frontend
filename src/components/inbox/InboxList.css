@@ -5,6 +5,8 @@
   position: sticky;
   transform: translate(5%, -80%);
   flex-direction: column;
+  width: 50%;
+  left: 25%;
 }
 .inboxMenu_section {
   position: sticky;
