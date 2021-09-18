@@ -1,9 +1,11 @@
 .inboxBlock {
-  display: flex;
+  display: inline-block;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
-  transform: translate(5%, -80%);
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   flex-direction: column;
 }
 .inboxMenu_section {

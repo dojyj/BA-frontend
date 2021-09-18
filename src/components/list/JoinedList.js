@@ -6,9 +6,10 @@ const Positioner = styled.div`
   height: 500px;
   width: 800px;
   position: absolute;
-  top: 25%;
-  left: 35%;
-  border: 1px solid blue;
+  top: 45%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  border: 1px solid;
 `;
 
 const Row = styled.div`

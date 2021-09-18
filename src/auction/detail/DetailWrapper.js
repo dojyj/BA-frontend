@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 import { auctionApi, serverURL } from "../../api";
 import { loginFunctions } from "../../auth/AuthWatchers";
 import { AuctionListUtils } from "../../pages/categories/ListUtils";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "@material-ui/core";
+import { openSendMessage } from "../../store/features/inboxSlice";
 
 const Positioner = styled.div`
   position: absolute;
@@ -69,7 +72,7 @@ const DetailWrapper = ({ id }) => {
   const [Auction, setAuction] = useState([]);
   const [category, setCategory] = useState("");
   const [imgSrc, setImgSrc] = useState("");
-
+  const dispatch = useDispatch();
   // const toggleLike = async (e) => {
   //   const res = await axios.post();
   //   setLike(!like);
@@ -90,9 +93,11 @@ const DetailWrapper = ({ id }) => {
         console.log(data);
         setAuction(data);
         setCategory(data.category);
-        AuctionListUtils.getAuctionImage(data.productImageURL).then((base64) => {
-          setImgSrc("data:;base64," + base64);
-        });
+        AuctionListUtils.getAuctionImage(data.productImageURL).then(
+          (base64) => {
+            setImgSrc("data:;base64," + base64);
+          }
+        );
       })
       .catch((err) => console.log(err));
   }
@@ -128,9 +133,8 @@ const DetailWrapper = ({ id }) => {
       <Buttons>
         <button>찜하기</button>
         <button>경매입장</button>
-        <Link to="/send">
-          <button>쪽지보내기</button>
-        </Link>
+
+        <Button onClick={() => dispatch(openSendMessage)}>쪽지보내기</Button>
       </Buttons>
     </Positioner>
   );
