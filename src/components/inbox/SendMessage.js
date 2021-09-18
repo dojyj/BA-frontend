@@ -7,6 +7,7 @@ import CloseIcon from "@material-ui/icons/Close";
 const SendMessage = () => {
   const { register, handleSubmit, watch, errors } = useForm();
 
+
   const onSubmit = (formData) => {
     console.log(formData);
     console.log("test log 찍히쥬?");

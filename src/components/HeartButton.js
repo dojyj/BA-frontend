@@ -8,6 +8,8 @@ const Heart = styled.img`
 `;
 
 const HeartButton = ({ like, onClick }) => {
+  console.log("jw testing heart")
+  
   return <Heart src={like ? heart : before_heart} onClick={onClick}></Heart>;
 };
 
