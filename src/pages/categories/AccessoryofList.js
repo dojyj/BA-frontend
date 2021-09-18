@@ -7,7 +7,7 @@ import List from '../../components/list/List';
 // List of Accessory
 function AccessoryofList () {
   const [Products,setProducts]=useState([]);
-  const [Point,setPoint]=useState(3);
+  const [Point,setPoint]=useState(1);
   
   useEffect(()=>{
     
@@ -25,7 +25,7 @@ function AccessoryofList () {
       console.log(res);
       
       setProducts(res.data.auctionList);
-      let number=Point+3;
+      let number=Point+1;
       setPoint(number);
     });
     
