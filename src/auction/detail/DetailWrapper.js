@@ -134,15 +134,12 @@ const DetailWrapper = ({ id }) => {
       </Views>
       <Buttons>
         <button>찜하기</button>
-        {/* <StyledLink to={`/realtimeauction/${auctionId}`}>
+        <StyledLink to={`/realtimeauction/${auctionId}`}>
           <button>경매입장</button>
         </StyledLink>
         <StyledLink to="/send">
-          <button>쪽지보내기</button>
-        </StyledLink> */}
-        <button>경매입장</button>
-
-        <Button onClick={() => dispatch(openSendMessage)}>쪽지보내기</Button>
+          <Button onClick={() => dispatch(openSendMessage)}>쪽지보내기</Button>
+        </StyledLink>
       </Buttons>
     </Positioner>
   );
