@@ -4,10 +4,8 @@ import art from "../../lib/art.png";
 
 const Positioner = styled.div`
   position: absolute;
-  top: 70%;
-  left: 50%;
-  width: 50%;
-  height: 100%;
+  top: 47%;
+  left: 55%;
   transform: translate(-50%, -50%);
 `;
 

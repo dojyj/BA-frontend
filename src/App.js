@@ -27,11 +27,13 @@ import MyAuctionList from "./pages/mypages/MyAuctionList";
 import DetailPage from "./pages/auction/DetailPage";
 import RealTimeAuctionPage from "./pages/auction/RealTimeAuctionPage";
 import { useSelector } from "react-redux";
-import { selectUser } from "./store/reducers/auth";
+import { selectUser } from "./store/features/userSlice";
+import { selectSendMessageIsOpen } from "./store/features/inboxSlice";
 
 const App = ({ location }) => {
   const exclusionArray = ["/signup"];
   const user = useSelector(selectUser);
+  ///const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
   return (
     <>
       {exclusionArray.indexOf(location.pathname) < 0 && <Header />}
