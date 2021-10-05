@@ -1,0 +1,19 @@
+/* auction info */
+#title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#content {
+  height: 10em;
+  height: 10em;
+  overflow: scroll;
+}
+
+/* seller info */
+#seller-image {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
