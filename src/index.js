@@ -7,7 +7,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./store/reducers/rootReducers";
 import thunk from "redux-thunk"; // 함수 형식을 대처하는 미들웨어
-import configureStore from "../src/store/store";
+import configureStore from "../src/store/store.js";
 
 // enhancing store with firebase
 import firebase from "firebase/app";
@@ -17,7 +17,6 @@ import { createFirestoreInstance } from "redux-firestore";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
-///export default configureStore();
 
 // react-redux-firebase 데이터베이스 접근 설정
 const rrfProps = {

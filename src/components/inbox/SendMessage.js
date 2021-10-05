@@ -4,18 +4,33 @@ import message from "../../lib/message.png";
 import "./SendMessage.css";
 import { Button } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import { useDispatch } from "react-redux";
+import { closeSendMessage } from "../../store/features/inboxSlice";
+import { firestore } from "../../firebase.utils";
+import firebase from "firebase";
 const SendMessage = () => {
   const { register, handleSubmit, watch, errors } = useForm();
+  const dispatch = useDispatch();
 
   const onSubmit = (formData) => {
     console.log(formData);
     console.log("test log 찍히쥬?");
+    firestore.collection("inbox").add({
+      receiver: formData.receiver,
+      sender: formData.sender,
+      content: formData.content,
+      timestemp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    dispatch(closeSendMessage());
   };
   return (
     <div className="messageBlock">
       <div className="sendMessage__header">
         <h3>쪽지 보내기</h3>
-        <CloseIcon className="sendMessage__close"></CloseIcon>
+        <CloseIcon
+          onClick={() => dispatch(closeSendMessage())}
+          className="sendMessage__close"
+        ></CloseIcon>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>

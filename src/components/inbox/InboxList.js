@@ -7,13 +7,28 @@ import { inboxdata } from "../../lib/api/TestData";
 import MyPageMenu from "../MyPageMenu";
 import InboxMenu from "./InboxMenu";
 import { BsInbox, BsInboxFill } from "react-icons/bs";
+import { firestore } from "../../firebase.utils";
 import "./InboxList.css";
 const InboxList = (props) => {
   const [dataList, setDataList] = useState([]);
-
+  const [inbox, setInbox] = useState([]);
   useEffect(() => {
     setDataList(inboxdata);
   }, []);
+
+  useEffect(() => {
+    firestore
+      .collection("inbox")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setInbox(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  });
 
   return (
     <>

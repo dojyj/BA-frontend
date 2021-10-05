@@ -3,12 +3,12 @@
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  top: 35%;
+  top: 70%;
   left: 50%;
+  width: 50%;
+  height: 100%;
   transform: translate(-50%, -50%);
   flex-direction: column;
-  width: 50%;
-  left: 25%;
 }
 .inboxMenu_section {
   position: sticky;
