@@ -9,22 +9,24 @@ const Plate = styled.div`
   flex: 1;
   align-items: center;
   overflow: scroll;
+  padding: 1em;
 `;
 
 const ImageRow = styled.div`
-  min-width: 200px;
-  min-height: 200px;
+  min-width: 150px;
+  min-height: 150px;
   background-image: url(${example_image});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  border: 5px solid #aaa;
 `;
 
 const PlateRow = styled.div`
   display: flex;
   width: 100%;
   padding: 0.5em;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid #ddd;
   justify-content: center;
 `;
 
@@ -33,7 +35,6 @@ const AuctionSellerInfoPlate = (sellerInfo) => {
 
   useEffect(() => {
     setSeller(sellerInfo.seller);
-    console.log(seller);
   }, [seller, sellerInfo]);
 
   return (
