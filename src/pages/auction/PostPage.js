@@ -83,7 +83,7 @@ function PostPage() {
     setLoading(true);
 
     auctionApi
-      .createAuction(auctionFormData)
+      .postAuction(auctionFormData)
       .then((res) => {
         console.log(res);
         history.push("/");
@@ -91,9 +91,7 @@ function PostPage() {
       .catch((err) => {
         console.log(err);
         setLoading(false);
-        alert(
-          "경매 형식에 맞지 않습니다. 필수항목과 종료가, 경매 시간을 확인해주세요"
-        );
+        alert("경매 형식에 맞지 않습니다. 필수항목과 종료가, 경매 시간을 확인해주세요");
       });
   };
 
@@ -108,12 +106,7 @@ function PostPage() {
         </div>
         <hr />
         <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-          <input
-            onChange={imagechangeHandler}
-            type="file"
-            name="img"
-            ref={register({ required: true })}
-          />
+          <input onChange={imagechangeHandler} type="file" name="img" ref={register({ required: true })} />
           {errors.title && "상품 이미지를 등록해주세요"}
           {imgBase64 ? (
             <>
@@ -123,12 +116,7 @@ function PostPage() {
             ""
           )}
 
-          <Controller
-            as={Select}
-            name="category"
-            options={options}
-            control={control}
-          />
+          <Controller as={Select} name="category" options={options} control={control} />
 
           <InputWithLabel label="상품이름" name="name">
             <input type="text" name="name" ref={register({ required: true })} />
@@ -136,29 +124,17 @@ function PostPage() {
           {errors.name && "상품명을 적어주세요"}
 
           <InputWithLabel label="상세설명" name="explain">
-            <input
-              type="text"
-              name="explain"
-              ref={register({ required: true })}
-            />
+            <input type="text" name="explain" ref={register({ required: true })} />
           </InputWithLabel>
           {errors.explain && "상품 설명을 적어주세요"}
 
           <InputWithLabel label="시작가" name="startPrice">
-            <input
-              type="number"
-              name="startPrice"
-              ref={register({ required: true })}
-            />
+            <input type="number" name="startPrice" ref={register({ required: true })} />
           </InputWithLabel>
           {errors.startPrice && "시작가를 정해주세요"}
 
           <InputWithLabel label="내정가" name="endPrice">
-            <input
-              type="number"
-              name="endPrice"
-              ref={register({ required: true })}
-            />
+            <input type="number" name="endPrice" ref={register({ required: true })} />
           </InputWithLabel>
           {errors.endPrice && "내정가를 정해주세요"}
 
@@ -166,30 +142,14 @@ function PostPage() {
             control={control}
             name="startDate"
             defaultValue={null}
-            render={({ onChange, value }) => (
-              <ReactDatePicker
-                onChange={onChange}
-                selected={value}
-                placeholderText={`거래 시작 일시를 정해주세요`}
-                showTimeSelect
-                dateFormat="yyyy/MM/dd hh:mm"
-              />
-            )}
+            render={({ onChange, value }) => <ReactDatePicker onChange={onChange} selected={value} placeholderText={`거래 시작 일시를 정해주세요`} showTimeSelect dateFormat="yyyy/MM/dd hh:mm" />}
           />
 
           <Controller
             control={control}
             name="endDate"
             defaultValue={null}
-            render={({ onChange, value }) => (
-              <ReactDatePicker
-                onChange={onChange}
-                selected={value}
-                placeholderText={`거래 종료 일시를 정해주세요`}
-                showTimeSelect
-                dateFormat="yyyy/MM/dd hh:mm"
-              />
-            )}
+            render={({ onChange, value }) => <ReactDatePicker onChange={onChange} selected={value} placeholderText={`거래 종료 일시를 정해주세요`} showTimeSelect dateFormat="yyyy/MM/dd hh:mm" />}
           />
 
           <div className="btnBlock">

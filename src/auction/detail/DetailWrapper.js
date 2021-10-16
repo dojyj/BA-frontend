@@ -24,7 +24,6 @@ const Img = styled.div`
   width: 290px;
   height: 290px;
   float: left;
-  border: 1px solid red;
 `;
 
 const Infos = styled.div`

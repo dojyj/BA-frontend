@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auctionApi } from "../../api";
 import List from "../../components/list/List";
 import { AuctionListUtils } from "./ListUtils";
+import "./category.css";
 
 const SportsofList = () => {
   const [Products, setProducts] = useState([]);
@@ -39,10 +40,12 @@ const SportsofList = () => {
   };
 
   return (
-    <div>
-      <h1>카테고리 스포츠 레저 리스트 화면</h1>
+    <div className="listing-div">
+      <div className="list-header-div">
+        <h1>Sports & Leisure</h1>
+      </div>
       {renderLists}
-      <button onClick={loadmoreHandler}>더보기</button>
+      <button onClick={loadmoreHandler}>새로고침</button>
     </div>
   );
 };
