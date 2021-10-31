@@ -26,6 +26,7 @@ function AllofList() {
   const renderLists = Products.map((product, index) => {
     return (
       <List
+        Products={Products}
         title={product.title}
         info={product.info}
         startDate={product.startDate}
