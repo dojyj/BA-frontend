@@ -1,86 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import art from "../../lib/art.png";
-const Positioner = styled.div`
-  height: 500px;
+import { Link } from "react-router-dom";
+import { AuctionListUtils } from "../../pages/categories/ListUtils";
+import { AuctionStateConverter } from "./ListUtils";
+
+const Row = styled(Link)`
+  height: 200px;
   width: 800px;
-  position: absolute;
-  top: 25%;
-  left: 35%;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
 `;
 
-const Row = styled.div`
-  height: 100px;
-  width: 800px;
-  margin-bottom: 5px;
+const ImgBox = styled.div`
+  height: 200px;
+  width: 200px;
+  background-color: #eee;
   display: flex;
 `;
-
-const Img = styled.div`
-  height: 150px;
+const Img = styled.img`
+  height: 200px;
   width: 200px;
-  border: 1px solid black;
-  img {
-    height: 140px;
-    width: 170px;
+  padding: 1em;
+  object-fit: scale-down;
+  &:focus {
+    outline: 0;
   }
 `;
 
 const Content = styled.div`
-  border: 1px solid black;
-  max-height: 150px;
+  max-height: 200px;
   width: 500px;
-  display: inline;
+  display: flex;
+  background-color: #eee;
+  flex-direction: column;
 `;
 
-const Price = styled.div`
-  border: 1px solid black;
-  max-height: 150px;
-  width: 150px;
-  display: inline;
-  justify-content: center;
+const ContentTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 `;
 
-const Date = styled.div`
-  border: 1px solid black;
-  max-height: 150px;
-  max-width: 300px;
-  display: inline;
-`;
+const ListRow = (props) => {
+  const [item, setItem] = useState({});
+  const [imgSrc, setImgSrc] = useState("");
 
-const List = (props) => {
+  useEffect(() => {
+    setItem(props.item);
+    AuctionListUtils.getAuctionImage(props.item.img).then((base64) => {
+      setImgSrc("data:;base64," + base64);
+    });
+  }, [props]);
+
+  console.log(item);
   return (
-    <Positioner>
-      <Row>
-        <img src={art} alt="" />
-        <Content>
-          <h2>{props.title}</h2>
-          <p>{props.info}</p>
-          <span>시작일 : {props.startDate}</span>
-          <span>종료일 : {props.endDate}</span>
-        </Content>
-
-        <Price>
-          <p>경매 시작 가격 : {props.startprice}</p>
-        </Price>
-      </Row>
-
-      <Row>
-        <img src={art} alt="" />
-        <Content>
-          <h2>{props.title}</h2>
-          <p>{props.info}</p>
-          <span>시작일 : {props.startDate}</span>
-          <span>종료일 : {props.endDate}</span>
-        </Content>
-
-        <Price>
-          <p>경매 시작 가격 : {props.startprice}</p>
-        </Price>
-      </Row>
-    </Positioner>
+    <Row to={`/auction/${item._id}`}>
+      <ImgBox>
+        <Img src={imgSrc} alt="" />
+      </ImgBox>
+      <Content>
+        <ContentTitle>
+          <h2>{item.title}</h2>
+          {AuctionStateConverter(item.state)}
+        </ContentTitle>
+        <div>시작일 : {item.startDate}</div>
+        <div>종료일 : {item.endDate}</div>
+        <div>경매 시작가 : {item.startPrice}</div>
+        <div>조회수 : {item.startPrice}</div>
+        <div>좋아요 버튼 : {item.startPrice}</div>
+      </Content>
+    </Row>
   );
 };
 
-export default List;
+export default ListRow;
