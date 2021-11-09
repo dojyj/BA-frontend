@@ -6,12 +6,9 @@ import { loginFunctions } from "../auth/AuthWatchers";
 import { Button } from "@material-ui/core";
 
 const Plus = styled.div`
-  justify-content: space-around;
+  justify-content: center;
   display: flex;
-  position: sticky;
-  margin-top: 15px !important;
-  margin-left: 10px !important;
-  width: 150px;
+  width: 10rem;
   border: 1px solid silver;
   padding: 15px !important;
   border-radius: 30px !important;
@@ -24,7 +21,8 @@ const Plus = styled.div`
 
 const Spacer = styled.div`
   padding-top: 3rem;
-  padding-left: 60rem;
+  display: flex;
+  justify-content: center;
   padding-bottom: 3rem;
 `;
 
@@ -46,13 +44,13 @@ const PlusButton = ({ location }) => {
       <Plus>
         {isLogin ? (
           <Link to="/postAuction">
-            <Button startIcon={<BsPlusCircleFill fontSize="large" />}>
+            <Button fullWidth="10rem" startIcon={<BsPlusCircleFill fontSize="large" />}>
               경매등록
             </Button>
           </Link>
         ) : (
           <Link to="/login">
-            <Button startIcon={<BsPlusCircleFill fontSize="large" />}>
+            <Button fullWidth="10rem" startIcon={<BsPlusCircleFill fontSize="large" />}>
               경매등록
             </Button>
           </Link>
