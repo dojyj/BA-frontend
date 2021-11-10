@@ -13,7 +13,9 @@ const Positioner = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
+  background-color: #f8f9fa;
   transform: translate(-50%, -50%);
+  padding: 1rem;
 `;
 const Contents = styled.div`
   width: 50rem;
@@ -115,7 +117,7 @@ const DetailWrapper = ({ id }) => {
           <br />
           <div>• 카테고리 : {category.label}</div>
           <br />
-          <div>• 작품설명: {Auction.content}</div>
+          <div>• 상품 상세: {Auction.content}</div>
           <br />
           <span>• 경매시작일 : {Auction.startDate} &nbsp;&nbsp; </span>
           <span>• 경매종료일 : {Auction.endDate}</span>

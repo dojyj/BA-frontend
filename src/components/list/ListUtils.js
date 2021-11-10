@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
+import before_heart from "../../lib/before_heart.png";
+import heart from "../../lib/heart.png";
 
 const AuctionState = styled.div`
   width: 6rem;
@@ -13,6 +14,13 @@ const AuctionState = styled.div`
   align-items: center;
 `;
 
+const Heart = styled.img`
+  height: 2rem;
+  width: 2rem;
+  margin: 0.5rem;
+`;
+
+// Auction 약자를 입력받아 한글로 변환, div return
 export const AuctionStateConverter = (state) => {
   let currentState;
 
@@ -21,7 +29,37 @@ export const AuctionStateConverter = (state) => {
   else if (state === "FAIL") currentState = "유찰";
   else if (state === "PROC") currentState = "진행 중";
 
-  console.log(currentState);
-
   return <AuctionState>{currentState}</AuctionState>;
 };
+
+// 경매 남은 시간 문자열로 리턴
+export const RemaininigTimeCalculator = (date) => {
+  const end = new Date(Date.parse(date));
+  const cur = new Date();
+  let days = end.getDate() - cur.getDate();
+  let hours = end.getHours() - cur.getHours();
+  let minutes = end.getMinutes() - cur.getMinutes();
+
+  console.log(`${end.getDay()} ${cur.getDay()}`);
+
+  if (end < cur) return "";
+  if (minutes < 0) {
+    hours -= 1;
+    minutes += 60;
+  }
+  if (hours < 0) {
+    days -= 1;
+    hours += 24;
+  }
+
+  if (days < 0) {
+    return "";
+  }
+
+  return `${days}d ${hours}h ${minutes}m left`;
+};
+
+// 경매 찜하기 핸들러 구현 필
+// export const DibsHandler = () => {
+//   return <Heart src={before_heart}></Heart>;
+// };
