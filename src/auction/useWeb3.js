@@ -1,7 +1,11 @@
 import Web3 from "web3";
 
+export const loadETH = () => {
+  return window.ethereum;
+};
+
 export const loadWeb3 = () => {
-  const ethereum = window.ethereum;
+  const ethereum = loadETH();
   var web3 = window.web3;
 
   if (ethereum) {
@@ -12,8 +16,7 @@ export const loadWeb3 = () => {
   } else if (web3) {
     web3 = new Web3(web3.currentProvider);
   } else {
-    // window.alert(`meatamask 필요!!`);
+    console.log("no metamask now");
   }
-
-  return ethereum;
+  return web3;
 };

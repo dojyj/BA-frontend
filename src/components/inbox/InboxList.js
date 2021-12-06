@@ -28,6 +28,7 @@ const InboxList = (props) => {
           }))
         )
       );
+    console.log(inbox);
   });
 
   return (
@@ -36,25 +37,13 @@ const InboxList = (props) => {
       <div className="inboxBlock">
         <div className="inboxMenu_section">
           <Link to="inbox">
-            <InboxMenu
-              Icon={BsInboxFill}
-              title="받은 쪽지함"
-              color="red"
-              selected
-            />
+            <InboxMenu Icon={BsInboxFill} title="받은 쪽지함" color="red" selected />
           </Link>
           <Link to="/sentinbox">
-            <InboxMenu
-              Icon={BsInbox}
-              title="보낸 쪽지함"
-              color="blue"
-              selected
-            />
+            <InboxMenu Icon={BsInbox} title="보낸 쪽지함" color="blue" selected />
           </Link>
         </div>
-        <CommonTable
-          headersName={["번호", "받는사람", "내용", "날짜", "읽음확인"]}
-        >
+        <CommonTable headersName={["번호", "받는사람", "내용", "날짜", "읽음확인"]}>
           {dataList
             ? dataList.map((item, index) => {
                 return (

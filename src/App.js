@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, BrowserRouter as Router, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import NotFound from "./NotFound";
 import Header from "./components/Header";
 import Home from "./pages/mainpages/Home";
@@ -17,15 +17,15 @@ import JoinedPage from "./pages/mypages/JoinedPage";
 import MyAuctionList from "./pages/mypages/MyAuctionList";
 import DetailPage from "./pages/auction/DetailPage";
 import RealTimeAuctionPage from "./pages/auction/RealTimeAuctionPage";
-import { useSelector } from "react-redux";
-import { selectUser } from "./store/features/userSlice";
-import { selectSendMessageIsOpen } from "./store/features/inboxSlice";
+// import { useSelector } from "react-redux";
+// import { selectUser } from "./store/features/userSlice";
+// import { selectSendMessageIsOpen } from "./store/features/inboxSlice";
 import { Lists } from "./pages/categories/ListUtils";
 
 const App = ({ location }) => {
   const exclusionArray = ["/signup"];
-  const user = useSelector(selectUser);
-  const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
+  // const user = useSelector(selectUser);
+  // const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
   return (
     <>
       {exclusionArray.indexOf(location.pathname) < 0 && <Header />}

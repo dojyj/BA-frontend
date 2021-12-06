@@ -17,3 +17,30 @@
   width: 100%;
   object-fit: contain;
 }
+
+.request-list-header {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  padding: 1em;
+  border-bottom: 1px solid #ddd;
+}
+
+.request-row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #ddd;
+}
+
+.request-date {
+  display: flex;
+  padding: 1em;
+}
+.request-user {
+  display: flex;
+  padding: 1em;
+}
+.request-price {
+  display: flex;
+  padding: 1em;
+}

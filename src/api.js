@@ -1,5 +1,4 @@
 import axios from "axios";
-import { firestore } from "./firebase.utils";
 
 export const serverURL = "http://localhost:3333"; // local
 // const serverURL = "http://54.180.79.0:3000"; // server
@@ -61,6 +60,7 @@ export const auctionApi = {
   postImage: (body) => api.post("/auctions/postimage", body),
   getImage: async (params) => api.get("/uploads/" + params, { responseType: "arraybuffer" }),
   getProgress: async (params) => api.get("/auctions/progress/" + params),
+  patchProgress: async (params, body) => api.patch("/auctions/progress/" + params, body),
 };
 
 export const userauctioinfoApi = {

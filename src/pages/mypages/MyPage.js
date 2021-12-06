@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useReducer } from "react";
 import MyPageMenu from "../../components/MyPageMenu";
 import { useHistory } from "react-router-dom";
-import { auth, firestore } from "../../firebase.utils";
+import { auth } from "../../firebase.utils";
 import { userApi } from "../../api";
 import { loginFunctions } from "../../auth/AuthWatchers";
 import { MyPageWrapper, InputWithLabel, AuthContent } from "../../auth";
@@ -21,7 +21,7 @@ function reducer(state, action) {
 }
 const MyPage = () => {
   const history = useHistory();
-  const [userprofile, setuserProfile] = useState("");
+  const [profile, setprofile] = useState("");
   const [state, dispatch] = useReducer(reducer, {
     name: "",
     email: "",
@@ -32,6 +32,7 @@ const MyPage = () => {
   });
   const onChange = (e) => {
     dispatch(e.target);
+    console.log(state);
   };
 
   useEffect(() => {
@@ -48,31 +49,31 @@ const MyPage = () => {
       })
       .then((data) => {
         console.log(data);
-        setuserProfile(data);
+        setprofile(data);
       })
       .catch((err) => console.log(err));
   }
-  const UserInfo = (userInfo) => {
-    firestore
-      .collection("users")
-      .doc(userInfo.uid)
-      .collection("users")
-      .add({
-        name: userInfo.name,
-        nickName: userInfo.nickName,
-        phoneNumber: userInfo.phoneNumber,
-        email: userInfo.email,
-        address: userInfo.address,
-        account: userInfo.account,
-        isDone: false,
-      })
-      .then((docRef) => {
-        docRef.update({
-          profileID: docRef.id,
-        });
-      });
-    setuserProfile("");
-  };
+  // const UserInfo = (userInfo) => {
+  //   firestore
+  //     .collection("users")
+  //     .doc(userInfo.uid)
+  //     .collection("users")
+  //     .add({
+  //       name: userInfo.name,
+  //       nickName: userInfo.nickName,
+  //       phoneNumber: userInfo.phoneNumber,
+  //       email: userInfo.email,
+  //       address: userInfo.address,
+  //       account: userInfo.account,
+  //       isDone: false,
+  //     })
+  //     .then((docRef) => {
+  //       docRef.update({
+  //         profileID: docRef.id,
+  //       });
+  //     });
+  //   setprofile("");
+  // };
   return (
     <div>
       <MyPageMenu />
@@ -99,36 +100,24 @@ const MyPage = () => {
       <MyPageWrapper>
         <AuthContent title="회원 기본 정보 기입">
           <InputWithLabel label="이름" name="name">
-            <input name="name" value={userprofile.name} onChange={onChange} />
+            <input name="name" value={profile.name} onChange={onChange} />
           </InputWithLabel>
           <InputWithLabel label="이메일" name="email">
-            <input name="email" value={userprofile.email} onChange={onChange} />
+            <input name="email" value={profile.email} onChange={onChange} />
           </InputWithLabel>
           <InputWithLabel label="가상계좌주소" name="account">
-            <input
-              name="account"
-              value={userprofile.account}
-              onChange={onChange}
-            />
+            <input name="account" value={profile.accountNumber} onChange={onChange} />
           </InputWithLabel>
           <InputWithLabel label="별명" name="nickName">
-            <input
-              name="nickName"
-              value={userprofile.nickName}
-              onChange={onChange}
-            />
+            <input name="nickName" value={profile.nickName} onChange={onChange} />
           </InputWithLabel>
           <button>중복검사</button>
           <InputWithLabel label="연락처" name="phoneNumber">
-            <input
-              name="phoneNumber"
-              value={userprofile.phoneNumber}
-              onChange={onChange}
-            />
+            <input name="phoneNumber" value={profile.phoneNumber} onChange={onChange} />
           </InputWithLabel>
-          <InputWithLabel label="주소" name="Address"></InputWithLabel>
-          <AuthContent detail="상세정보" />
-          <InputWithLabel label="상세정보를 기입해주세요"></InputWithLabel>
+          <InputWithLabel label="주소" name="Address">
+            <input name="address" value={profile.address} onChange={onChange} />
+          </InputWithLabel>
           <button className="authButton" type="submit">
             수정완료
           </button>

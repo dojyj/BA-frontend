@@ -8,13 +8,8 @@ import { auth } from "../../firebase.utils";
 import { loginFunctions } from "../../auth/AuthWatchers";
 import { DaumAddressModal } from "../../components/externalApi";
 import { useForm } from "react-hook-form";
-import {
-  AuthWrapper,
-  InputWithLabel,
-  AuthContent,
-  AuthButton,
-} from "../../auth";
-import { loadWeb3 } from "../../auction/useWeb3";
+import { AuthWrapper, InputWithLabel, AuthContent, AuthButton } from "../../auth";
+import { loadETH } from "../../auction/useWeb3";
 
 const AddInformationForm = () => {
   const { register, errors, handleSubmit } = useForm({ mode: "onBlur" });
@@ -24,7 +19,7 @@ const AddInformationForm = () => {
   const [account, setAccount] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const ethereum = loadWeb3();
+  const ethereum = loadETH();
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
@@ -94,23 +89,12 @@ const AddInformationForm = () => {
             {account}
           </InputWithLabel>
           <InputWithLabel label="별명" name="nickName">
-            <input
-              type="text"
-              ref={register({ required: true, maxLength: 6 })}
-              name="nickName"
-            />
+            <input type="text" ref={register({ required: true, maxLength: 6 })} name="nickName" />
           </InputWithLabel>
-          {errors.nickName &&
-            (errors.nickName.type === "required"
-              ? "별명을 입력해주세요"
-              : "별명은 최대 6글자까지 사용 가능합니다..")}
+          {errors.nickName && (errors.nickName.type === "required" ? "별명을 입력해주세요" : "별명은 최대 6글자까지 사용 가능합니다..")}
 
           <InputWithLabel label="연락처" name="phoneNumber">
-            <input
-              type="number"
-              ref={register({ required: true })}
-              name="phoneNumber"
-            />
+            <input type="number" ref={register({ required: true })} name="phoneNumber" />
           </InputWithLabel>
           {errors.phoneNumber && "연락처를 기재해주세요"}
 
@@ -119,11 +103,7 @@ const AddInformationForm = () => {
           </InputWithLabel>
 
           <AuthContent detail="상세정보" />
-          <InputWithLabel label="상세정보를 기입해주세요">
-            {address !== "" ? (
-              <input type="text" ref={register} name="detailedAddress" />
-            ) : null}
-          </InputWithLabel>
+          <InputWithLabel label="상세정보를 기입해주세요">{address !== "" ? <input type="text" ref={register} name="detailedAddress" /> : null}</InputWithLabel>
 
           <AuthButton onClick={handleSubmit}>
             <button>가입완료</button>

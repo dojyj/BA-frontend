@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { loginFunctions } from "../../auth/AuthWatchers";
 import moment from "moment";
 import Select from "react-select";
-import postAuction from "../../auction/postAuction.css";
+// import postAuction from "../../auction/postAuction.css";
 
 function PostPage() {
   const { register, errors, handleSubmit, control } = useForm({

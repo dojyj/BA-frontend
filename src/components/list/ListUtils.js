@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import before_heart from "../../lib/before_heart.png";
-import heart from "../../lib/heart.png";
+// import before_heart from "../../lib/before_heart.png";
+// import heart from "../../lib/heart.png";
 
 const AuctionState = styled.div`
   width: 6rem;
@@ -12,12 +12,6 @@ const AuctionState = styled.div`
   display: flex;
   margin-right: 1rem;
   align-items: center;
-`;
-
-const Heart = styled.img`
-  height: 2rem;
-  width: 2rem;
-  margin: 0.5rem;
 `;
 
 // Auction 약자를 입력받아 한글로 변환, div return
@@ -39,8 +33,6 @@ export const RemaininigTimeCalculator = (date) => {
   let days = end.getDate() - cur.getDate();
   let hours = end.getHours() - cur.getHours();
   let minutes = end.getMinutes() - cur.getMinutes();
-
-  console.log(`${end.getDay()} ${cur.getDay()}`);
 
   if (end < cur) return "";
   if (minutes < 0) {

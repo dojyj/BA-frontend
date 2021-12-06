@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { auctionApi, userApi } from "../../api";
+import { RemaininigTimeCalculator } from "../../components/list/ListUtils";
 import { AuctionListUtils } from "../../pages/categories/ListUtils";
 import AuctionItemInfoPlate from "./AuctionItemInfoPlate";
 import AuctionSellerInfoPlate from "./AuctionSellerInfoPlate";
@@ -77,7 +78,6 @@ const RealTimeAuction = ({ id }) => {
   useEffect(() => {
     setTimer("1d 3h 59m");
   }, []);
-
   async function getAuctionData(route_params) {
     await auctionApi
       .getAuctiondetail(route_params)
@@ -85,7 +85,6 @@ const RealTimeAuction = ({ id }) => {
         return res.data.auction;
       })
       .then(async (data) => {
-        console.log(data);
         setAuction(data);
 
         await AuctionListUtils.getAuctionImage(data.productImageURL)
@@ -113,8 +112,8 @@ const RealTimeAuction = ({ id }) => {
           .then((res) => {
             return res.data.progressInfo;
           })
-          .then((data) => {
-            setProgressInfo(data);
+          .then((ret) => {
+            setProgressInfo(ret);
           })
           .catch((err) => {
             console.log(err);
@@ -128,7 +127,7 @@ const RealTimeAuction = ({ id }) => {
   return (
     <AuctionMain>
       <AuctionName>
-        {sellerInfo.nickName}님의 경매 : <TimerText>종료까지 {timer}</TimerText>
+        {sellerInfo.nickName}님의 경매 : <TimerText> {new Date() < Date.parse(auctionInfo.endDate) && `종료까지 : ${RemaininigTimeCalculator(auctionInfo.endDate)}`}</TimerText>
       </AuctionName>
       <AuctionHeader>
         <AuctionImg>
@@ -140,7 +139,7 @@ const RealTimeAuction = ({ id }) => {
         </AuctionInfoPlate>
       </AuctionHeader>
       <AuctionBody>
-        <AuctionStatusBoard progress={progressInfo}></AuctionStatusBoard>
+        <AuctionStatusBoard pid={auctionInfo.progressInfo} progress={progressInfo}></AuctionStatusBoard>
       </AuctionBody>
     </AuctionMain>
   );

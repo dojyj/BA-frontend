@@ -19,15 +19,15 @@ const Row = styled.div`
   display: flex;
 `;
 
-const Img = styled.div`
-  height: 150px;
-  width: 200px;
-  border: 1px solid black;
-  img {
-    height: 140px;
-    width: 170px;
-  }
-`;
+// const Img = styled.div`
+//   height: 150px;
+//   width: 200px;
+//   border: 1px solid black;
+//   img {
+//     height: 140px;
+//     width: 170px;
+//   }
+// `;
 
 const Content = styled.div`
   border: 1px solid black;
@@ -50,12 +50,12 @@ const Buttons = styled.div`
   display: inline;
 `;
 
-const Date = styled.div`
-  border: 1px solid black;
-  height: 150px;
-  width: 300px;
-  display: inline;
-`;
+// const Date = styled.div`
+//   border: 1px solid black;
+//   height: 150px;
+//   width: 300px;
+//   display: inline;
+// `;
 
 const JoinedList = (props) => {
   return (
